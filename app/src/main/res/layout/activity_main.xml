@@ -4,28 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <ImageView
-        android:id="@+id/mainHeadingTextview"
+        android:id="@+id/mainHeadingImageview"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="24dp"
+        android:contentDescription="@string/description_pokemon_logo"
         android:src="@drawable/pokemon_logo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/description_pokemon_logo"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/loadingDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/mainHeadingImageview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemonsRecyclerView"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainHeadingTextview"
+        app:layout_constraintTop_toBottomOf="@id/mainHeadingImageview"
         tools:listitem="@layout/layout_item_pokemon_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
