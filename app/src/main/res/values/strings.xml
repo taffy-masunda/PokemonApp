@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">PokemonSplashActivity</string>
+    <string name="app_name">Pokemon App</string>
+    <string name="description_pokemon_pikachu">pokemon pikachu</string>
+    <string name="description_pokemon_logo">pokemon logo</string>
 </resources>
