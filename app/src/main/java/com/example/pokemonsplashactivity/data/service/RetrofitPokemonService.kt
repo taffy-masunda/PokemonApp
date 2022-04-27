@@ -9,7 +9,7 @@ import retrofit2.http.Path
 
 
 interface RetrofitPokemonService {
-    @GET("https://pokeapi.co/api/v2/pokemon")
+    @GET("pokemon")
     fun getAllPokemons(): Call<PokemonModel>
 
     @GET("pokemon/{id}")

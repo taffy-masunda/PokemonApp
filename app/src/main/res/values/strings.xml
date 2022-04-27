@@ -4,4 +4,7 @@
     <string name="description_pokemon_logo">pokemon logo</string>
     <string name="available_pokemons">Available Pokemons</string>
     <string name="description_right_chevron_icon">right chevron icon</string>
+    <string name="title_activity_pokemon_details">PokemonDetailsActivity</string>
+    <string name="pokemon_image_details_description">pokemon image</string>
+    <string name="error_loading_pokemon">Error loading Pokemon data. \nPlease try again later.</string>
 </resources>

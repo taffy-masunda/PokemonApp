@@ -27,6 +27,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <TextView
+        android:id="@+id/errorMessageTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/mainHeadingImageview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:drawableTopCompat="@drawable/ic_error_orange"
+        android:textAlignment="center"
+        android:text="@string/error_loading_pokemon"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemonsRecyclerView"
         android:visibility="invisible"

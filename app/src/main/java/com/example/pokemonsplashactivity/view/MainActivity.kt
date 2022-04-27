@@ -25,15 +25,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this, PokemonViewModelFactory(PokemonRespository(retrofitService)))
-            .get(PokemonListViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, PokemonViewModelFactory(PokemonRespository(retrofitService)))
+                .get(PokemonListViewModel::class.java)
 
-        viewModel.loading.observe(this) {
-            if (it) {
+        viewModel.loading.observe(this) { isLoading ->
+            if (isLoading) {
                 binding.loadingDialog.visibility = View.VISIBLE
             } else {
-                binding.loadingDialog.visibility = View.GONE
-                binding.pokemonsRecyclerView.visibility = View.VISIBLE
+                    binding.loadingDialog.visibility = View.GONE
+                    viewModel.loaded.observe(this) { loadedData ->
+                    if (loadedData) {
+                        binding.pokemonsRecyclerView.visibility = View.VISIBLE
+                    } else {
+                        binding.errorMessageTextview.visibility = View.VISIBLE
+                    }
+                }
             }
         }
 
@@ -46,9 +53,7 @@ class MainActivity : AppCompatActivity() {
             adapter.setPokemonsList(it.results)
         }
 
-
         viewModel.getAllPokemons()
-
 
     }
 }

@@ -2,9 +2,11 @@ package com.example.pokemonsplashactivity.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonsplashactivity.data.Results
 import com.example.pokemonsplashactivity.databinding.LayoutItemPokemonListBinding
+import kotlin.coroutines.coroutineContext
 
 class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
 
@@ -17,6 +19,11 @@ class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonViewHo
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = LayoutItemPokemonListBinding.inflate(inflater, parent, false)
+
+        binding.root.setOnClickListener{
+
+        }
+
         return PokemonViewHolder(binding)
     }
 

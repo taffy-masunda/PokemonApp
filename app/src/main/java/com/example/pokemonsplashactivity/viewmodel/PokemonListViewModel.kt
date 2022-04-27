@@ -11,17 +11,20 @@ class PokemonListViewModel constructor(private val repository: PokemonRespositor
     val pokemonList = MutableLiveData<PokemonModel>()
     val errorMessage = MutableLiveData<String>()
     val loading = MutableLiveData<Boolean>()
+    val loaded = MutableLiveData<Boolean>()
 
     fun getAllPokemons() {
         val response = repository.getAllPokemons()
         response.enqueue(object : retrofit2.Callback<PokemonModel> {
             override fun onResponse(call: Call<PokemonModel>, response: Response<PokemonModel>) {
                 pokemonList.postValue(response.body())
+                loaded.value = true
                 loading.value = false
             }
 
             override fun onFailure(call: Call<PokemonModel>, t: Throwable) {
                 errorMessage.postValue(t.message)
+                loaded.value = false
                 loading.value = false
             }
         })
