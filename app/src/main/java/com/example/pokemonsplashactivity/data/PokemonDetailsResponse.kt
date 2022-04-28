@@ -1,5 +1,7 @@
 package com.example.pokemonsplashactivity.data
 
+import com.google.gson.annotations.SerializedName
+
 data class PokemonDetailsResponse (
     val abilities: List<Ability>,
     val baseExperience: Long,
@@ -74,7 +76,10 @@ data class Sprites (
     val backFemale: String,
     val backShiny: String,
     val backShinyFemale: String,
+
+    @SerializedName("front_default")
     val frontDefault: String,
+
     val frontFemale: String,
     val frontShiny: String,
     val frontShinyFemale: String,

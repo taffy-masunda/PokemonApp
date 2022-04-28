@@ -1,10 +1,10 @@
 package com.example.pokemonsplashactivity.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.pokemonsplashactivity.R
 import com.example.pokemonsplashactivity.data.PokemonDetailsResponse
 import com.example.pokemonsplashactivity.data.PokemonRespository
@@ -18,7 +18,9 @@ class PokemonDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPokemonDetailsBinding
     private lateinit var viewModel: PokemonViewModel
     private val retrofitService = RetrofitPokemonService.getInstance()
-    private var pokemonId : Int = 0
+    private var pokemonId: Int = 0
+    private var types: String = ""
+    private var moves: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +28,14 @@ class PokemonDetailsActivity : AppCompatActivity() {
         binding = ActivityPokemonDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        pokemonId = extractPokemonId(intent.getStringExtra(URL_KEY).toString())
+        if (!intent.getStringExtra(URL_KEY).isNullOrEmpty()) {
+            pokemonId = extractPokemonId(intent.getStringExtra(URL_KEY).toString())
+        }
 
-
-        viewModel = ViewModelProvider(this, PokemonViewModelFactory(PokemonRespository(retrofitService, pokemonId), pokemonId))
+        viewModel = ViewModelProvider(
+            this,
+            PokemonViewModelFactory(PokemonRespository(retrofitService, pokemonId))
+        )
             .get(PokemonViewModel::class.java)
 
         viewModel.loading.observe(this) {
@@ -42,20 +48,51 @@ class PokemonDetailsActivity : AppCompatActivity() {
         }
 
         viewModel.singlePokemon.observe(this) {
-            val poke: PokemonDetailsResponse = it
-            binding.pokemoneNameTextview.text = poke.name
+            setPokemonDetailsViews(it)
         }
 
         viewModel.getOnePokemon(pokemonId)
     }
 
+    /* remove the last forward-slash from the URL */
     private fun extractPokemonId(pokemonUrl: String): Int {
-        // to remove the last forward-slash from the URL
-        val pokemonUrlNew = pokemonUrl.removeRange((pokemonUrl.length-1), pokemonUrl.length)
+        val pokemonUrlNew = pokemonUrl.removeRange((pokemonUrl.length - 1), pokemonUrl.length)
         return pokemonUrlNew.substringAfterLast("/", "").toInt()
     }
 
-    companion object{
+    private fun setPokemonDetailsViews(pokemon: PokemonDetailsResponse?) {
+        if (pokemon != null) {
+            binding.pokemoneNameTextview.text = pokemon.name
+
+            Glide.with(this)
+                .load(pokemon.sprites.frontDefault)
+                .placeholder(R.drawable.ic_image_placeholder)
+                .error(R.drawable.ic_image_placeholder)
+                .centerCrop()
+                .into(binding.pokemonImageview)
+
+            if (pokemon.types.isNotEmpty()) {
+                for (i in 0 until pokemon.types.size) {
+                    types += pokemon.types[i].type.name + ", "
+                }
+            }
+
+            if (pokemon.moves.isNotEmpty()) {
+                for (i in 0 until pokemon.moves.size) {
+                    moves += pokemon.moves[i].move.name + ", "
+                }
+            }
+
+            binding.heightTextview.text = resources.getString(R.string.height, pokemon.height)
+            binding.weightTextview.text = resources.getString(R.string.height, pokemon.weight)
+            binding.typesTextview.text = resources.getString(R.string.pokemonTypes, types)
+            binding.movesTextview.text = resources.getString(R.string.pokemonMoves, pokemon.moves[0].move.name)
+
+
+        }
+    }
+
+    companion object {
         const val URL_KEY = "pokemonURL"
     }
 }

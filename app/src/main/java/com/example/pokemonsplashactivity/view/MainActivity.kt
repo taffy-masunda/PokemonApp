@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), PokemonRecyclerInterface {
         setContentView(binding.root)
 
         viewModel =
-            ViewModelProvider(this, PokemonViewModelFactory(PokemonRespository(retrofitService, 0), 0), )
+            ViewModelProvider(this, PokemonViewModelFactory(PokemonRespository(retrofitService, 0)) )
                 .get(PokemonViewModel::class.java)
 
         viewModel.loading.observe(this) { isLoading ->
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), PokemonRecyclerInterface {
 
         binding.pokemonsRecyclerView.adapter = adapter
         viewModel.pokemonList.observe(this) {
-            adapter.setPokemonsList(it.results)
+            adapter.setPokemonsList(it.results.take(10))
         }
 
         viewModel.getAllPokemons()

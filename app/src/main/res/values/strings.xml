@@ -7,4 +7,8 @@
     <string name="title_activity_pokemon_details">PokemonDetailsActivity</string>
     <string name="pokemon_image_details_description">pokemon image</string>
     <string name="error_loading_pokemon">Error loading Pokemon data. \nPlease try again later.</string>
+    <string name="height">Height: %1$d CM</string>
+    <string name="weight">Weight: %1$d KG</string>
+    <string name="pokemonTypes">Types: %1$s</string>
+    <string name="pokemonMoves">Moves: %1$s</string>
 </resources>

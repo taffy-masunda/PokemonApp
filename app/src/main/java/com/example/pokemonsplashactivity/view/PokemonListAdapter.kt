@@ -4,15 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonsplashactivity.data.Results
 import com.example.pokemonsplashactivity.databinding.LayoutItemPokemonListBinding
 
-class PokemonListAdapter(var passedInterface: PokemonRecyclerInterface) :
+class PokemonListAdapter(private var passedInterface: PokemonRecyclerInterface) :
     RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
 
-    lateinit var recyclerInterface: PokemonRecyclerInterface
+    private lateinit var recyclerInterface: PokemonRecyclerInterface
 
     private var pokemonList = mutableListOf<Results>()
     fun setPokemonsList(pokemonList: List<Results>) {
@@ -33,7 +32,7 @@ class PokemonListAdapter(var passedInterface: PokemonRecyclerInterface) :
         holder.binding.pokemonNameTextview.text = pokemon.name
 
         val activity = holder.itemView.context as Activity
-        holder.binding.root.setOnClickListener { 
+        holder.binding.root.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
                 val openDetailsIntent = Intent(activity, PokemonDetailsActivity::class.java)
                 openDetailsIntent.putExtra(URL_KEY, pokemon.url)
