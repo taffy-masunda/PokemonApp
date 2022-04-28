@@ -1,6 +1,7 @@
 package com.example.pokemonsplashactivity.data.service
 
-import com.example.pokemonsplashactivity.data.PokemonModel
+import com.example.pokemonsplashactivity.data.PokemonDetailsResponse
+import com.example.pokemonsplashactivity.data.PokemonResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,10 +11,10 @@ import retrofit2.http.Path
 
 interface RetrofitPokemonService {
     @GET("pokemon")
-    fun getAllPokemons(): Call<PokemonModel>
+    fun getAllPokemons(): Call<PokemonResponse>
 
     @GET("pokemon/{id}")
-    fun getOnePokemon(@Path("id") id: Int): Call<PokemonModel>
+    fun getOnePokemon(@Path("id") id: Int): Call<PokemonDetailsResponse>
 
     companion object {
 

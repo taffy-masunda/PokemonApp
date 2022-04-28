@@ -2,7 +2,7 @@ package com.example.pokemonsplashactivity.data
 
 import com.google.gson.annotations.SerializedName
 
-data class PokemonModel(
+data class PokemonResponse(
     val count: Long,
     val next: String,
     val previous: Any? = null,

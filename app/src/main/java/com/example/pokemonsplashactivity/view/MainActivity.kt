@@ -9,15 +9,15 @@ import com.example.pokemonsplashactivity.R
 import com.example.pokemonsplashactivity.data.PokemonRespository
 import com.example.pokemonsplashactivity.data.service.RetrofitPokemonService
 import com.example.pokemonsplashactivity.databinding.ActivityMainBinding
-import com.example.pokemonsplashactivity.viewmodel.PokemonListViewModel
+import com.example.pokemonsplashactivity.viewmodel.PokemonViewModel
 import com.example.pokemonsplashactivity.viewmodel.PokemonViewModelFactory
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PokemonRecyclerInterface {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: PokemonListViewModel
+    private lateinit var viewModel: PokemonViewModel
     private val retrofitService = RetrofitPokemonService.getInstance()
-    private val adapter = PokemonListAdapter()
+    private val adapter = PokemonListAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel =
-            ViewModelProvider(this, PokemonViewModelFactory(PokemonRespository(retrofitService)))
-                .get(PokemonListViewModel::class.java)
+            ViewModelProvider(this, PokemonViewModelFactory(PokemonRespository(retrofitService, 0), 0), )
+                .get(PokemonViewModel::class.java)
 
         viewModel.loading.observe(this) { isLoading ->
             if (isLoading) {
@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.getAllPokemons()
-
     }
+
+    override fun onPokemonItemClick(pokemonId: Int) {}
 }
