@@ -26,6 +26,20 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <TextView
+        android:id="@+id/errorMessageTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_loading_pokemon"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:drawableTopCompat="@drawable/ic_error_orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainHeadingImageview" />
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/pokemonDetailsContainer"
         android:layout_width="match_parent"
@@ -112,6 +126,65 @@
             app:layout_constraintTop_toBottomOf="@id/typesTextview"
             app:layout_constraintLeft_toLeftOf="@id/weightTextview"
             app:layout_constraintRight_toRightOf="@id/heightTextview"/>
+
+        <TextView
+            android:id="@+id/otherImagesTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/other_images"
+            app:layout_constraintBottom_toTopOf="@id/shinyImageHeadingTextview"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/backImageHeadingTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/back"
+            app:layout_constraintBottom_toTopOf="@id/pokemonBackImageview"
+            app:layout_constraintLeft_toLeftOf="@id/pokemonBackImageview"
+            app:layout_constraintRight_toRightOf="@id/pokemonBackImageview"/>
+
+        <ImageView
+            android:id="@+id/pokemonBackImageview"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/pokemonShinyImageview"
+            android:contentDescription="@string/description_pokemon_image"/>
+
+        <TextView
+            android:id="@+id/shinyImageHeadingTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/shiny"
+            app:layout_constraintBottom_toTopOf="@id/pokemonShinyImageview"
+            app:layout_constraintLeft_toLeftOf="@id/pokemonShinyImageview"
+            app:layout_constraintRight_toRightOf="@id/pokemonShinyImageview"/>
+
+        <ImageView
+            android:id="@+id/pokemonShinyImageview"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/pokemonBackImageview"
+            android:contentDescription="@string/description_pokemon_image"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Pokemon App</string>
     <string name="description_pokemon_pikachu">pokemon pikachu</string>
+    <string name="description_pokemon_image">pokemon pikachu</string>
     <string name="description_pokemon_logo">pokemon logo</string>
     <string name="available_pokemons">Available Pokemons</string>
     <string name="description_right_chevron_icon">right chevron icon</string>
@@ -11,4 +12,7 @@
     <string name="weight">Weight: %1$d KG</string>
     <string name="pokemonTypes">Types: %1$s</string>
     <string name="pokemonMoves">Moves: %1$s</string>
+    <string name="other_images">Other Images</string>
+    <string name="back">Back</string>
+    <string name="shiny">Shiny</string>
 </resources>

@@ -72,6 +72,7 @@ data class Versions (
 )
 
 data class Sprites (
+    @SerializedName("back_default")
     val backDefault: String,
     val backFemale: String,
     val backShiny: String,
@@ -81,6 +82,8 @@ data class Sprites (
     val frontDefault: String,
 
     val frontFemale: String,
+
+    @SerializedName("front_shiny")
     val frontShiny: String,
     val frontShinyFemale: String,
     val other: Other? = null,
